@@ -1,0 +1,164 @@
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram id="jNNOEuryqHigAh0xcdbO" name="MOMO SMS Analytics - System Architecture">
+<mxGraphModel dx="1654" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- Raw MoMo XML -->
+    <mxCell id="raw_xml" value="&lt;b&gt;data/raw/momo.xml&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="60" y="350" width="180" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ETL Pipeline container -->
+    <mxCell id="etl_group" value="ETL Pipeline" style="swimlane;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;startSize=30;horizontal=1;" vertex="1" parent="1">
+      <mxGeometry x="320" y="160" width="220" height="400" as="geometry" />
+    </mxCell>
+
+    <!-- ETL stages (children of etl_group — relative coordinates) -->
+    <mxCell id="parse" value="parse_xml.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="etl_group">
+      <mxGeometry x="20" y="50" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="clean" value="clean_normalize.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="etl_group">
+      <mxGeometry x="20" y="135" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="categorize" value="categorize.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="etl_group">
+      <mxGeometry x="20" y="220" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="load" value="load_db.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="etl_group">
+      <mxGeometry x="20" y="305" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Dead Letter -->
+    <mxCell id="dead_letter" value="data/logs/dead_letter/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="640" y="50" width="200" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ETL Log -->
+    <mxCell id="etl_log" value="data/logs/etl.log" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="640" y="160" width="200" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- SQLite -->
+    <mxCell id="sqlite" value="&lt;b&gt;data/db.sqlite3&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+      <mxGeometry x="640" y="330" width="170" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- dashboard.json -->
+    <mxCell id="dash_json" value="data/processed/dashboard.json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="640" y="490" width="200" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- FastAPI (optional) — dashed border -->
+    <mxCell id="fastapi" value="&lt;b&gt;FastAPI (optional)&lt;/b&gt;&lt;br&gt;/transactions&lt;br&gt;/analytics" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="910" y="310" width="190" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Static Frontend container -->
+    <mxCell id="frontend_group" value="Static Frontend" style="swimlane;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;startSize=30;horizontal=1;" vertex="1" parent="1">
+      <mxGeometry x="1180" y="260" width="230" height="210" as="geometry" />
+    </mxCell>
+    <mxCell id="frontend_html" value="index.html" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="frontend_group">
+      <mxGeometry x="15" y="45" width="200" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="frontend_css" value="web/styles.css" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="frontend_group">
+      <mxGeometry x="15" y="100" width="200" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="frontend_js" value="web/chart_handler.js" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="frontend_group">
+      <mxGeometry x="15" y="155" width="200" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- User (actor) -->
+    <mxCell id="user" value="User" style="shape=umlActor;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="1490" y="320" width="60" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Legend -->
+    <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br align=&quot;left&quot; /&gt;&#xa;&#x2192; solid arrow = required flow&lt;br align=&quot;left&quot; /&gt;&#xa;- - &#x2192; dashed arrow = optional / error / log" style="text;html=1;strokeColor=#000000;fillColor=#ffffff;align=left;verticalAlign=top;spacingLeft=8;overflow=hidden;" vertex="1" parent="1">
+      <mxGeometry x="60" y="680" width="320" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════ EDGES ═══════════════ -->
+
+    <!-- Raw XML → parse_xml.py -->
+    <mxCell id="e_raw_parse" value="raw XML" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="raw_xml" target="parse" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- parse → clean (within ETL group) -->
+    <mxCell id="e_parse_clean" value="parsed dict" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="parse" target="clean" parent="etl_group">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- clean → categorize (within ETL group) -->
+    <mxCell id="e_clean_cat" value="normalized records" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="clean" target="categorize" parent="etl_group">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- categorize → load (within ETL group) -->
+    <mxCell id="e_cat_load" value="classified records" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="categorize" target="load" parent="etl_group">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- load → SQLite -->
+    <mxCell id="e_load_sqlite" value="SQL upsert" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="load" target="sqlite" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- SQLite → dashboard.json -->
+    <mxCell id="e_sqlite_dash" value="JSON aggregates" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="sqlite" target="dash_json" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- dashboard.json → Static Frontend (default path) -->
+    <mxCell id="e_dash_frontend" value="fetch (default)" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="dash_json" target="frontend_group" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- SQLite → FastAPI (dashed) -->
+    <mxCell id="e_sqlite_api" value="query" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;" edge="1" source="sqlite" target="fastapi" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- FastAPI → Static Frontend (dashed) -->
+    <mxCell id="e_api_frontend" value="HTTP/JSON" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;" edge="1" source="fastapi" target="frontend_group" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Static Frontend → User -->
+    <mxCell id="e_frontend_user" value="rendered charts" style="edgeStyle=orthogonalEdgeStyle;html=1;" edge="1" source="frontend_group" target="user" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Dashed error arrows: each ETL stage → Dead Letter -->
+    <mxCell id="e_parse_dl" value="errors" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="parse" target="dead_letter" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e_clean_dl" value="errors" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="clean" target="dead_letter" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e_cat_dl" value="errors" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="categorize" target="dead_letter" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e_load_dl" value="errors" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="load" target="dead_letter" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Dashed log arrows: each ETL stage → ETL Log -->
+    <mxCell id="e_parse_log" value="logs" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="parse" target="etl_log" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e_clean_log" value="logs" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="clean" target="etl_log" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e_cat_log" value="logs" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="categorize" target="etl_log" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e_load_log" value="logs" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="load" target="etl_log" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>
+  </diagram>
+</mxfile>
