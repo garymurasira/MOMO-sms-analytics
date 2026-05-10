@@ -54,7 +54,7 @@ flowchart LR
     I -.-> E
 ```
 
-📐 **Detailed Draw.io diagram:** [Open in draw.io](<SHARE_LINK>)
+📐 **Detailed Draw.io diagram:** [Open in draw.io](https://app.diagrams.net/#Uhttps://raw.githubusercontent.com/SanoRod00/MOMO-sms-analytics/main/docs/architecture/architecture.drawio)
 
 ![High-Level Architecture](./docs/architecture/architecture.png)
 
