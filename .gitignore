@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Environment
+.env
+
+# Data (raw XML is git-ignored per spec)
+data/raw/*
+!data/raw/.gitkeep
+data/db.sqlite3
+data/logs/*.log
+data/logs/dead_letter/*
+!data/logs/dead_letter/.gitkeep
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
