@@ -8,13 +8,13 @@
 
 **Team Name:** _[Underrated Silicon Valley]_
 
-| Name |                 Role               |         | GitHub |
-|          
-| Sano Rodrigue     | ETL & Backend           | `r.sano@alustudent.com` |
-|  Gary Murasira    | Database              | `g.murasira@alustudent.com` |
-|  Merci Ndekwe     | Frontend Dashboard  | `m.ndekwe@alustudent.com` |
-|  Espoir Habimfura | API and Testing     |  `e.habimfura@alustudent.com`|
-|  David Irihose    | Devops and Docs     |  `d.irihose@alustudent.com` |
+            
+          
+ Sano Rodrigue      ETL & Backend            `r.sano@alustudent.com` 
+  Gary Murasira     Database               `g.murasira@alustudent.com` 
+  Merci Ndekwe      Frontend Dashboard   `m.ndekwe@alustudent.com` 
+  Espoir Habimfura  API and Testing       `e.habimfura@alustudent.com`
+  David Irihose     Devops and Docs       `d.irihose@alustudent.com` 
 
 ---
 
