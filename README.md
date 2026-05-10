@@ -54,7 +54,7 @@ flowchart LR
     I -.-> E
 ```
 
-📐 **Detailed Draw.io diagram:** _[Add link here once created]_
+📐 **Detailed Draw.io diagram:** [Open in draw.io](<SHARE_LINK>)
 
 ---
 
