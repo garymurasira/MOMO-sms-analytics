@@ -62,6 +62,16 @@ flowchart LR
 
 ---
 
+## Database Design (ERD)
+
+![ERD Diagram](./docs/erd_diagram.png)
+
+The relational schema is built around five entities. **`transactions`** is the central hub, linked to **`transaction_categories`** (one category classifies many transactions) and to **`system_logs`** (one transaction generates many log entries). The relationship between `transactions` and **`users`** is many-to-many — a single transaction involves at least two users (a sender and a receiver) — and is resolved through the **`transaction_participants`** junction table, which records each party's role (`SENDER` or `RECEIVER`). Primary keys, foreign keys, and unique constraints are marked on every entity in the diagram.
+
+Full design rationale: [docs/erd_rationale.md](./docs/erd_rationale.md)
+
+---
+
 ##  Tech Stack
 
 | Layer       | Tools                                           |
