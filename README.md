@@ -202,6 +202,35 @@ JSON schemas for all 5 database entities are located in [`examples/json_schemas.
 
 ---
 
+## Database Integrity & Security (Gary Murasira)
+
+### Overview
+`database/security_integrity.sql` layers data-protection rules on top of the core schema. It runs after `database_setup.sql` and adds CHECK constraints, triggers, and views that keep the data accurate and easy to query.
+
+### CHECK Constraints
+Four constraints are added to the `transactions` table:
+- `amount >= 0` — a transaction amount can never be negative
+- `fee >= 0` — a fee can never be negative
+- `new_balance >= 0` — a MoMo wallet cannot go below zero
+- `fee <= amount` — a MoMo-specific rule: the service fee can never exceed the principal amount
+
+### Triggers
+| Trigger | Event | What it does |
+|---|---|---|
+| `trg_after_tx_insert` | AFTER INSERT on `transactions` | Automatically writes an INFO row to `system_logs` for every new transaction |
+| `trg_before_tx_update` | BEFORE UPDATE on `transactions` | Blocks any update that would set `amount` negative or make `fee` exceed `amount` |
+
+### Views
+| View | Description |
+|---|---|
+| `v_transaction_summary` | Joins transactions, categories, participants, and users into one readable row — no manual JOINs needed |
+| `v_daily_totals` | Total transaction volume, count, and fees grouped by calendar day |
+
+### Files
+- [`database/security_integrity.sql`](./database/security_integrity.sql) — all constraints, triggers, and views
+
+---
+
 ##  Contributing Workflow
 
 1. Pull latest `main`
