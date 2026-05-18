@@ -28,7 +28,6 @@ This document records how each team member used AI tools during the project, wha
 
 ---
 
-
 ## David — database_setup.sql 
 
 **Tool used:** Claude (chat)
@@ -66,3 +65,29 @@ This document records how each team member used AI tools during the project, wha
   to `system_logs` myself — decisions based on what makes sense for our domain
   (deleting a transaction should remove its participant links, but should not
   destroy historical log entries).
+
+---
+
+## Gary Murasira — Database Integrity & Security (Task 2, part 2)
+
+**Date:** 2026-05-18
+**Tool used:** Claude Code (claude.ai/code)
+
+### What I used AI for
+- Asked Claude to explain what CHECK constraints, triggers, and views are conceptually before writing any code
+- Asked for clarification on the difference between BEFORE and AFTER triggers and when to use each
+- Asked Claude to explain the SIGNAL SQLSTATE syntax so I could understand how to raise custom error messages
+
+### How I verified and adjusted the output
+- Wrote all SQL code myself and tested each piece live in MySQL 8.0 before committing
+- Confirmed each CHECK constraint correctly rejected invalid data by running test INSERT statements
+- Debugged a DELIMITER issue myself when the second trigger broke — identified the root cause and fixed it independently
+- Cross-referenced all table and column names against `database/database_setup.sql` to ensure correctness
+
+### What I did myself
+- Wrote all four CHECK constraints, both triggers, and both views from scratch
+- Came up with the MoMo-specific domain rule (fee cannot exceed amount) as an original constraint
+- Ran all tests in MySQL and captured screenshots of each result for the PDF
+- Wrote the README subsection covering all integrity and security features
+
+---
