@@ -33,7 +33,7 @@ This document records how each team member used AI tools during the project, wha
 
 **Tool used:** Claude (chat)
 
-### What I used AI for (permitted scope only)
+### What I used AI for 
 1. **MySQL syntax verification.** I had written the `CREATE TABLE` statements
    based on our team's agreed 5-table schema, but I wasn't sure about the exact
    MySQL 8 syntax for combining a column-level `COMMENT` with an `ENUM` and a
