@@ -157,6 +157,41 @@ Columns: **Backlog · To Do · In Progress · In Review · Done**. Cards labeled
 
 ---
 
+## JSON Data Modeling (Merci Ndekwe)
+
+### Overview
+JSON schemas for all 5 database entities are located in [`examples/json_schemas.json`](./examples/json_schemas.json). These schemas demonstrate how the relational database tables are serialized into JSON for API responses.
+
+### Entities Modeled
+- `transaction_categories` — lookup list of MoMo transaction types
+- `users` — customers, merchants, and banks involved in transactions
+- `transactions` — one record per MoMo SMS transaction
+- `transaction_participants` — junction table linking transactions to users with roles
+- `system_logs` — pipeline processing audit trail
+
+### SQL-to-JSON Mapping
+
+| SQL Table | SQL Column | SQL Type | JSON Field | JSON Type | Note |
+|---|---|---|---|---|---|
+| transactions | category_id | INT (FK) | category | object | FK becomes nested object |
+| transaction_participants | user_id | INT (FK) | user | object | FK becomes nested object |
+| transactions | amount | DECIMAL(12,2) | amount | number | No quotes — supports calculations |
+| transactions | transaction_date | DATETIME | transaction_date | string | ISO format string |
+| transaction_participants | role | ENUM | role | string | SENDER or RECEIVER |
+| system_logs | log_level | ENUM | log_level | string | INFO, WARN, or ERROR |
+| users | phone_number | VARCHAR | phone_number | string or null | null for banks (no phone) |
+| transactions | external_txn_id | VARCHAR | external_txn_id | string | Unique transaction reference |
+
+### Key Design Decisions
+- **Nesting instead of foreign keys:** In SQL, relationships are expressed as foreign key IDs (e.g. `category_id`). In JSON for an API, the full related object is embedded directly so the frontend does not need to make extra lookup requests.
+- **null for missing fields:** Bank users have no phone number. Using `null` keeps the field present in every user object for API consistency — omitting it entirely would break frontend code that expects the field.
+- **Numbers as numbers:** Amounts, fees, and balances are JSON numbers (not strings) so they can be used directly in calculations without parsing.
+
+### Files
+- [`examples/json_schemas.json`](./examples/json_schemas.json) — all schemas, complex nested transaction, user transaction history, and API response example
+
+---
+
 ##  Contributing Workflow
 
 1. Pull latest `main`
