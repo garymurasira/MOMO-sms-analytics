@@ -1,0 +1,311 @@
+{
+  "transaction_categories": [
+    {
+      "category_id": 1,
+      "category_name": "Incoming Money",
+      "description": "Funds received into the MoMo wallet"
+    },
+    {
+      "category_id": 2,
+      "category_name": "Payment to Code Holder",
+      "description": "Payment to a registered merchant code"
+    },
+    {
+      "category_id": 3,
+      "category_name": "Transfer to Mobile Number",
+      "description": "Peer-to-peer transfer to another MoMo user"
+    },
+    {
+      "category_id": 4,
+      "category_name": "Bank Deposit",
+      "description": "Deposit from a linked bank account"
+    },
+    {
+      "category_id": 5,
+      "category_name": "Airtime Bill Payment",
+      "description": "Buying airtime from the wallet"
+    },
+    {
+      "category_id": 6,
+      "category_name": "Cash Power Bill Payment",
+      "description": "Payment for electricity token"
+    }
+  ],
+
+  "users": [
+    {
+      "user_id": 1,
+      "full_name": "Kagabo Eric",
+      "phone_number": "+250787864976",
+      "user_type": "CUSTOMER"
+    },
+    {
+      "user_id": 2,
+      "full_name": "Merci Ndekwe",
+      "phone_number": "+250797124531",
+      "user_type": "CUSTOMER"
+    },
+    {
+      "user_id": 3,
+      "full_name": "Murokore David",
+      "phone_number": "+250781562345",
+      "user_type": "MERCHANT"
+    },
+    {
+      "user_id": 4,
+      "full_name": "Kazungu Denis",
+      "phone_number": "+250791658612",
+      "user_type": "MERCHANT"
+    },
+    {
+      "user_id": 5,
+      "full_name": "Equity Bank",
+      "phone_number": null,
+      "user_type": "BANK"
+    }
+  ],
+
+  "transactions": [
+    {
+      "transaction_id": 1,
+      "external_txn_id": "TXN202401001",
+      "category_id": 1,
+      "amount": 10000.00,
+      "fee": 0.00,
+      "new_balance": 55000.00,
+      "transaction_date": "2024-01-15 08:30:00",
+      "raw_message": "You have received 10000 RWF from Kagabo Eric."
+    },
+    {
+      "transaction_id": 2,
+      "external_txn_id": "TXN202401002",
+      "category_id": 2,
+      "amount": 5000.00,
+      "fee": 100.00,
+      "new_balance": 49900.00,
+      "transaction_date": "2024-01-16 10:15:00",
+      "raw_message": "TxId: TXN202401002. Your payment of 5000 RWF to Murokore David."
+    },
+    {
+      "transaction_id": 3,
+      "external_txn_id": "TXN202401003",
+      "category_id": 3,
+      "amount": 12000.00,
+      "fee": 150.00,
+      "new_balance": 37750.00,
+      "transaction_date": "2024-01-17 14:00:00",
+      "raw_message": "12000 RWF transferred to Murokore David."
+    },
+    {
+      "transaction_id": 4,
+      "external_txn_id": "TXN202401004",
+      "category_id": 4,
+      "amount": 13000.00,
+      "fee": 0.00,
+      "new_balance": 50750.00,
+      "transaction_date": "2024-01-18 09:45:00",
+      "raw_message": "Bank deposit of 13000 RWF from Equity Bank."
+    },
+    {
+      "transaction_id": 5,
+      "external_txn_id": "TXN202401005",
+      "category_id": 5,
+      "amount": 1000.00,
+      "fee": 0.00,
+      "new_balance": 49750.00,
+      "transaction_date": "2024-01-19 07:20:00",
+      "raw_message": "Airtime purchase of 1000 RWF was successful."
+    }
+  ],
+
+  "transaction_participants": [
+    { "participant_id": 1,  "transaction_id": 1, "user_id": 1, "role": "SENDER" },
+    { "participant_id": 2,  "transaction_id": 1, "user_id": 2, "role": "RECEIVER" },
+
+    { "participant_id": 3,  "transaction_id": 2, "user_id": 1, "role": "SENDER" },
+    { "participant_id": 4,  "transaction_id": 2, "user_id": 3, "role": "RECEIVER" },
+
+    { "participant_id": 5,  "transaction_id": 3, "user_id": 2, "role": "SENDER" },
+    { "participant_id": 6,  "transaction_id": 3, "user_id": 3, "role": "RECEIVER" },
+
+    { "participant_id": 7,  "transaction_id": 4, "user_id": 5, "role": "SENDER" },
+    { "participant_id": 8,  "transaction_id": 4, "user_id": 1, "role": "RECEIVER" },
+
+    { "participant_id": 9,  "transaction_id": 5, "user_id": 2, "role": "SENDER" },
+    { "participant_id": 10, "transaction_id": 5, "user_id": 4, "role": "RECEIVER" }
+  ],
+
+  "system_logs": [
+    {
+      "log_id": 1,
+      "transaction_id": 1,
+      "log_level": "INFO",
+      "message": "Parsed Incoming Money SMS successfully",
+      "created_at": "2024-01-15 08:30:05"
+    },
+    {
+      "log_id": 2,
+      "transaction_id": 2,
+      "log_level": "INFO",
+      "message": "Parsed Payment to Code Holder SMS successfully",
+      "created_at": "2024-01-16 10:15:05"
+    },
+    {
+      "log_id": 3,
+      "transaction_id": 3,
+      "log_level": "WARN",
+      "message": "Fee field inferred from balance delta",
+      "created_at": "2024-01-17 14:00:05"
+    },
+    {
+      "log_id": 4,
+      "transaction_id": 4,
+      "log_level": "ERROR",
+      "message": "Insufficient balance, transaction rejected",
+      "created_at": "2024-01-18 09:45:05"
+    },
+    {
+      "log_id": 5,
+      "transaction_id": 5,
+      "log_level": "INFO",
+      "message": "Airtime purchase parsed successfully",
+      "created_at": "2024-01-19 07:20:05"
+    }
+  ],
+
+  "complex_transaction_example": {
+    "transaction_id": 1,
+    "external_txn_id": "TXN202401001",
+    "amount": 10000.00,
+    "fee": 0.00,
+    "new_balance": 55000.00,
+    "transaction_date": "2024-01-15 08:30:00",
+    "raw_message": "You have received 10000 RWF from Kagabo Eric.",
+
+    "category": {
+      "category_id": 1,
+      "category_name": "Incoming Money",
+      "description": "Funds received into the MoMo wallet"
+    },
+
+    "participants": [
+      {
+        "participant_id": 1,
+        "role": "SENDER",
+        "user": {
+          "user_id": 1,
+          "full_name": "Kagabo Eric",
+          "phone_number": "+250787864976",
+          "user_type": "CUSTOMER"
+        }
+      },
+      {
+        "participant_id": 2,
+        "role": "RECEIVER",
+        "user": {
+          "user_id": 2,
+          "full_name": "Merci Ndekwe",
+          "phone_number": "+250797124531",
+          "user_type": "CUSTOMER"
+        }
+      }
+    ],
+
+    "system_logs": [
+      {
+        "log_id": 1,
+        "transaction_id": 1,
+        "log_level": "INFO",
+        "message": "Parsed Incoming Money SMS successfully",
+        "created_at": "2024-01-15 08:30:05"
+      }
+    ]
+  },
+
+  "user_transaction_history": {
+    "user_id": 1,
+    "full_name": "Kagabo Eric",
+    "phone_number": "+250787864976",
+    "user_type": "CUSTOMER",
+    "transactions": [
+      {
+        "transaction_id": 1,
+        "external_txn_id": "TXN202401001",
+        "role": "SENDER",
+        "amount": 10000.00,
+        "fee": 0.00,
+        "new_balance": 55000.00,
+        "transaction_date": "2024-01-15 08:30:00",
+        "category": {
+          "category_id": 1,
+          "category_name": "Incoming Money"
+        }
+      },
+      {
+        "transaction_id": 2,
+        "external_txn_id": "TXN202401002",
+        "role": "SENDER",
+        "amount": 5000.00,
+        "fee": 100.00,
+        "new_balance": 49900.00,
+        "transaction_date": "2024-01-16 10:15:00",
+        "category": {
+          "category_id": 2,
+          "category_name": "Payment to Code Holder"
+        }
+      },
+      {
+        "transaction_id": 4,
+        "external_txn_id": "TXN202401004",
+        "role": "RECEIVER",
+        "amount": 13000.00,
+        "fee": 0.00,
+        "new_balance": 50750.00,
+        "transaction_date": "2024-01-18 09:45:00",
+        "category": {
+          "category_id": 4,
+          "category_name": "Bank Deposit"
+        }
+      }
+    ]
+  },
+
+  "api_response_example": {
+    "status": "success",
+    "code": 200,
+    "message": "Transaction retrieved successfully",
+    "data": {
+      "transaction_id": 1,
+      "external_txn_id": "TXN202401001",
+      "amount": 10000.00,
+      "fee": 0.00,
+      "new_balance": 55000.00,
+      "transaction_date": "2024-01-15 08:30:00",
+      "category": {
+        "category_id": 1,
+        "category_name": "Incoming Money",
+        "description": "Funds received into the MoMo wallet"
+      },
+      "participants": [
+        {
+          "role": "SENDER",
+          "user": {
+            "user_id": 1,
+            "full_name": "Kagabo Eric",
+            "phone_number": "+250787864976"
+          }
+        },
+        {
+          "role": "RECEIVER",
+          "user": {
+            "user_id": 2,
+            "full_name": "Merci Ndekwe",
+            "phone_number": "+250797124531"
+          }
+        }
+      ]
+    }
+  }
+
+}
+
