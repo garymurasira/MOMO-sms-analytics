@@ -4,15 +4,11 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <!-- TITLE -->
         <mxCell id="title" value="MoMo SMS Analytics — Entity Relationship Diagram"
           style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;"
           vertex="1" parent="1">
           <mxGeometry x="200" y="20" width="1050" height="42" as="geometry" />
         </mxCell>
-
-        <!-- ===== TRANSACTION_CATEGORIES (soft green — lookup/reference) ===== -->
         <mxCell id="tc" value="transaction_categories"
           style="swimlane;fontStyle=1;align=center;startSize=30;container=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a5c1a;fontSize=12;"
           vertex="1" parent="1">
@@ -33,8 +29,6 @@
           vertex="1" parent="tc">
           <mxGeometry y="90" width="270" height="30" as="geometry" />
         </mxCell>
-
-        <!-- ===== TRANSACTIONS (soft blue — core hub entity) ===== -->
         <mxCell id="tx" value="transactions"
           style="swimlane;fontStyle=1;align=center;startSize=30;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#003366;fontSize=12;"
           vertex="1" parent="1">
@@ -85,8 +79,6 @@
           vertex="1" parent="tx">
           <mxGeometry y="270" width="295" height="30" as="geometry" />
         </mxCell>
-
-        <!-- ===== TRANSACTION_PARTICIPANTS (amber/orange — junction table) ===== -->
         <mxCell id="tp" value="transaction_participants"
           style="swimlane;fontStyle=1;align=center;startSize=30;container=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d6b656;fontColor=#7d4e00;fontSize=12;"
           vertex="1" parent="1">
@@ -112,8 +104,6 @@
           vertex="1" parent="tp">
           <mxGeometry y="120" width="305" height="30" as="geometry" />
         </mxCell>
-
-        <!-- ===== USERS (soft blue — core entity) ===== -->
         <mxCell id="u" value="users"
           style="swimlane;fontStyle=1;align=center;startSize=30;container=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#003366;fontSize=12;"
           vertex="1" parent="1">
@@ -140,12 +130,10 @@
           <mxGeometry y="120" width="275" height="30" as="geometry" />
         </mxCell>
         <mxCell id="u5" value="     created_at : TIMESTAMP"
-          style="text;strokeColor=#6c8ebf;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
+          style="text;strokeColor=#6c8ebf;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;"
           vertex="1" parent="u">
           <mxGeometry y="150" width="275" height="30" as="geometry" />
         </mxCell>
-
-        <!-- ===== SYSTEM_LOGS (soft gray — audit/pipeline table) ===== -->
         <mxCell id="sl" value="system_logs"
           style="swimlane;fontStyle=1;align=center;startSize=30;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;"
           vertex="1" parent="1">
@@ -176,45 +164,31 @@
           vertex="1" parent="sl">
           <mxGeometry y="150" width="295" height="30" as="geometry" />
         </mxCell>
-
-        <!-- ===== RELATIONSHIPS (crow's foot notation) ===== -->
-
-        <!-- 1. transaction_categories (1) --classifies--> transactions (N) -->
         <mxCell id="e1" value="classifies"
           style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#82b366;fontSize=11;fontColor=#1a5c1a;labelBackgroundColor=#ffffff;fontStyle=1;"
           edge="1" source="tc" target="tx" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- 2. transactions (1) --involved in--> transaction_participants (N) -->
         <mxCell id="e2" value="involved in"
           style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.47;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#6c8ebf;fontSize=11;fontColor=#003366;labelBackgroundColor=#ffffff;fontStyle=1;"
           edge="1" source="tx" target="tp" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- 3. users (1) --participates as--> transaction_participants (N) -->
         <mxCell id="e3" value="participates as"
           style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.22;exitDx=0;exitDy=0;entryX=1;entryY=0.67;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#6c8ebf;fontSize=11;fontColor=#003366;labelBackgroundColor=#ffffff;fontStyle=1;"
           edge="1" source="u" target="tp" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- 4. transactions (1) --generates--> system_logs (N) -->
         <mxCell id="e4" value="generates"
           style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=ERmandOne;startFill=0;endArrow=ERmany;endFill=0;strokeColor=#666666;fontSize=11;fontColor=#333333;labelBackgroundColor=#ffffff;fontStyle=1;"
           edge="1" source="tx" target="sl" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- ===== M:N ANNOTATION (prominently placed below junction table) ===== -->
         <mxCell id="ann" value="&lt;b&gt;[JUNCTION TABLE — M:N BRIDGE]&lt;/b&gt;&lt;br&gt;transactions &#8596; users is MANY-to-MANY.&lt;br&gt;One transaction can involve multiple users&lt;br&gt;(e.g. a SENDER and a RECEIVER).&lt;br&gt;This junction table resolves the M:N relationship."
           style="text;html=1;strokeColor=#d6b656;fillColor=#fff9e6;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;arcSize=8;fontSize=11;fontColor=#7d4e00;"
           vertex="1" parent="1">
           <mxGeometry x="775" y="320" width="305" height="100" as="geometry" />
         </mxCell>
-
-        <!-- ===== LEGEND ===== -->
         <mxCell id="leg" value="Legend"
           style="swimlane;fontStyle=1;align=center;startSize=28;container=1;collapsible=0;fillColor=#f0f0f0;strokeColor=#999999;fontSize=12;"
           vertex="1" parent="1">
@@ -255,12 +229,11 @@
           vertex="1" parent="leg">
           <mxGeometry y="184" width="275" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="leg8" value="Crow foot ( ≻— ) = &quot;many&quot; end of a relationship"
+        <mxCell id="leg8" value="Crow foot ( many end ) = multiple rows can relate"
           style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;fontSize=10;"
           vertex="1" parent="leg">
           <mxGeometry y="208" width="275" height="24" as="geometry" />
         </mxCell>
-
       </root>
     </mxGraphModel>
   </diagram>
