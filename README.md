@@ -81,7 +81,11 @@ A lightweight REST API built with Python's standard library (`http.server`) — 
 ```bash
 python api/server.py
 # or
+python3 api/server.py
+# or
 python -m api.server
+# or
+python3 -m api.server
 ```
 
 The server starts on `http://localhost:8000`.
