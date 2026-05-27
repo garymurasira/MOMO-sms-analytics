@@ -52,7 +52,7 @@ flowchart LR
     B -.errors.-> G[ Dead Letter<br/>data/logs/dead_letter/]
     B -.logs.-> H[ etl.log]
 
-    C -.optional.-> I[🔌 FastAPI<br/>/transactions /analytics]
+    C -.optional.-> I[ FastAPI<br/>/transactions /analytics]
     I -.-> E
 ```
 
@@ -244,3 +244,34 @@ Four constraints are added to the `transactions` table:
 ##  License
 
 MIT — see [LICENSE](./LICENSE).
+
+---
+
+## XML Parser (David)
+
+Script: `api/parse_xml.py`
+Output: `api/data/transactions.json` (1,691 records)
+
+Parses `data/modified_sms_v2.xml` into a JSON array of transaction records
+consumed by the REST API. For each SMS it classifies the transaction type,
+extracts amount, fee, balance, external TxId, sender and receiver via
+regex, and converts the Android millisecond timestamp to ISO-8601 UTC.
+Malformed records are logged and skipped without aborting the batch.
+
+**Category distribution (1,691 records):**
+
+| Category | Count |
+|---|---|
+| Payment to Code Holder | 713 |
+| Transfer to Mobile | 585 |
+| Bank Deposit | 248 |
+| Incoming Money | 63 |
+| Other | 58 |
+| Internet Bundle | 19 |
+| Cash Withdrawal | 3 |
+| Reversal | 2 |
+
+**Run:**
+
+    python3 api/parse_xml.py
+    python3 api/parse_xml.py --input data/modified_sms_v2.xml --output api/data/transactions.json
