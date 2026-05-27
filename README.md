@@ -72,6 +72,56 @@ Full design rationale: [docs/erd_rationale.md](./docs/erd_rationale.md)
 
 ---
 
+## API Server
+
+A lightweight REST API built with Python's standard library (`http.server`) — no external frameworks required. It reads `api/data/transactions.json` at startup and exposes full CRUD access over HTTP.
+
+### Running the server
+
+```bash
+python api/server.py
+# or
+python -m api.server
+```
+
+The server starts on `http://localhost:8000`.
+
+### Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/` | Health check — returns API name and version |
+| GET | `/transactions` | List all transactions |
+| GET | `/transactions/{id}` | Fetch a single transaction by id |
+| POST | `/transactions` | Create a new transaction |
+| PUT | `/transactions/{id}` | Partially update a transaction |
+| DELETE | `/transactions/{id}` | Delete a transaction |
+
+### Example curl commands
+
+```bash
+# List all transactions
+curl -s http://localhost:8000/transactions | head -c 500
+
+# Fetch transaction with id 1
+curl -s http://localhost:8000/transactions/1
+
+# Create a new transaction
+curl -s -X POST http://localhost:8000/transactions \
+  -H "Content-Type: application/json" \
+  -d '{"type":"Payment","amount":2500,"sender":"Alice","receiver":"Bob","timestamp":"2026-05-27T10:00:00"}'
+
+# Update a transaction (replace 9999 with the id returned by POST)
+curl -s -X PUT http://localhost:8000/transactions/9999 \
+  -H "Content-Type: application/json" \
+  -d '{"amount":3000}'
+
+# Delete a transaction
+curl -i -X DELETE http://localhost:8000/transactions/9999
+```
+
+---
+
 ##  Tech Stack
 
 | Layer       | Tools                                           |
