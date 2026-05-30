@@ -1,0 +1,40 @@
+============================================================
+  DSA BENCHMARK: Linear Search vs Dictionary Lookup
+============================================================
+  Dataset size : 1691 transactions
+  Target ID    : 1691
+  Runs         : 500
+------------------------------------------------------------
+  Method                    Avg Time (s)         Total Time (s)
+------------------------------------------------------------
+  Linear Search O(n)        0.00005740           0.028701
+  Dictionary Lookup O(1)    0.00000008           0.000042
+------------------------------------------------------------
+  Dictionary is 683.4x faster than linear search
+============================================================
+
+REFLECTION
+------------------------------------------------------------
+Linear search scans every element in the list one by one
+until it finds a match. For a dataset of 1,691 records,
+this means up to 1,691 comparisons per lookup — O(n).
+
+Dictionary lookup uses a hash function to compute the
+exact memory location of the key directly. No scanning
+is needed — the lookup takes constant time regardless
+of dataset size — O(1).
+
+Why dict is faster:
+  - Hashing converts the key (id) to a memory address
+  - No iteration required — direct access
+  - Cost is paid once when building the dict, not per query
+
+Alternative data structures:
+  1. Binary Search (sorted list) — O(log n): sort IDs once,
+     then use binary search. Faster than linear, slower than dict.
+  2. BST (Binary Search Tree) — O(log n) average: good for
+     range queries but more complex to implement.
+  3. Hash Table with collision handling — same O(1) average
+     as Python dict but allows custom collision strategies
+     (chaining, open addressing) for specific use cases.
+============================================================

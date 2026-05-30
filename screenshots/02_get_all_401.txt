@@ -1,0 +1,5 @@
+=== GET /transactions — 401 Unauthorized ===
+Status : 401
+Headers: {'Server': 'BaseHTTP/0.6 Python/3.13.7', 'Date': 'Sat, 30 May 2026 12:21:06 GMT', 'WWW-Authenticate': 'Basic realm="MoMo API"', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '25'}
+Body   : {"error": "unauthorized"}
+==================================================

@@ -1,0 +1,5 @@
+=== DELETE /transactions/1692 — 204 No Content ===
+Status : 204
+Headers: {'Server': 'BaseHTTP/0.6 Python/3.13.7', 'Date': 'Sat, 30 May 2026 12:21:22 GMT'}
+Body   : 
+==================================================
